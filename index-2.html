@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorateur Unicode — copiez 1 500 caractères &amp; émojis (codes, HTML, CSS, JS)</title>
+  <meta name="description" content="Explorez et copiez plus de 1 500 caractères Unicode et émojis : recherche par nom ou code U+, entités HTML, échappements CSS et JavaScript, encodage UTF-8. Mis à jour automatiquement chaque jour.">
+
+  <!-- AUTO-SEO:BEGIN — régénéré à chaque build, ne pas éditer -->
+  <link rel="canonical" href="http://localhost:8000/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Explorateur Unicode">
+  <meta property="og:title" content="Explorateur Unicode — copiez 1 500 caractères &amp; émojis">
+  <meta property="og:description" content="Explorez et copiez plus de 1 500 caractères Unicode et émojis : recherche par nom ou code U+, entités HTML, échappements CSS et JavaScript, encodage UTF-8. Mis à jour automatiquement.">
+  <meta property="og:url" content="http://localhost:8000/">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Explorateur Unicode", "url": "http://localhost:8000/", "description": "Explorez et copiez plus de 1 500 caractères Unicode et émojis : recherche par nom ou code U+, entités HTML, échappements CSS et JavaScript, encodage UTF-8. Mis à jour automatiquement."}</script>
+  <!-- AUTO-SEO:END -->
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔣</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="brand" href="./">
+      <span class="brand-mark">𝕌</span>
+      <span class="brand-name">Explorateur Unicode</span>
+    </a>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.3-4.3"></path>
+      </svg>
+      <input id="search" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Rechercher : nom, code (U+1F600) ou caractère …">
+      <kbd>/</kbd>
+    </div>
+  </header>
+
+  <div id="demo-banner" class="banner" hidden>
+    ⚠️ <code>output/data.json</code> introuvable — jeu de démonstration affiché.
+    Exécutez <code>python3 script.py</code> puis servez le dossier en HTTP
+    (<code>python3 -m http.server</code>) pour charger la base complète.
+  </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <nav id="cat-nav" class="cat-nav" aria-label="Catégories"></nav>
+    </aside>
+
+    <main class="content">
+      <p id="results-info" class="results-info">Chargement…</p>
+      <div id="grid" class="grid" aria-live="polite"></div>
+      <div id="sentinel" class="sentinel" aria-hidden="true"></div>
+
+      <noscript>
+        <div class="noscript-box">
+          JavaScript est nécessaire pour la recherche en direct. Vous pouvez
+          néanmoins parcourir les pages statiques :
+          <a href="categorie/smileys.html">Smileys</a>,
+          <a href="categorie/fleches.html">Flèches</a>,
+          <a href="categorie/maths.html">Mathématiques</a>…
+          Voir aussi le <a href="sitemap.xml">plan du site</a>.
+        </div>
+      </noscript>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <nav class="footer-nav" aria-label="Toutes les catégories">
+      <a href="categorie/smileys.html">Smileys &amp; émotions</a>
+      <a href="categorie/gestes.html">Gestes &amp; mains</a>
+      <a href="categorie/personnes.html">Personnes</a>
+      <a href="categorie/animaux.html">Animaux &amp; nature</a>
+      <a href="categorie/nourriture.html">Nourriture &amp; boissons</a>
+      <a href="categorie/activites.html">Sports &amp; activités</a>
+      <a href="categorie/voyages.html">Voyage &amp; lieux</a>
+      <a href="categorie/objets.html">Objets</a>
+      <a href="categorie/symboles.html">Symboles</a>
+      <a href="categorie/fleches.html">Flèches</a>
+      <a href="categorie/maths.html">Mathématiques</a>
+      <a href="categorie/monnaies.html">Monnaies</a>
+      <a href="categorie/grec.html">Alphabet grec</a>
+      <a href="categorie/formes.html">Formes géométriques</a>
+      <a href="categorie/cadres.html">Cadres &amp; blocs</a>
+      <a href="categorie/cartes.html">Cartes à jouer</a>
+      <a href="categorie/ponctuation.html">Ponctuation &amp; typo</a>
+    </nav>
+    <p id="footer-info"></p>
+    <p class="credits">
+      Données de caractères © Unicode Consortium · Site regénéré automatiquement chaque jour via GitHub Actions ·
+      <a href="mentions-legales.html">Mentions légales &amp; confidentialité</a> ·
+      <a href="sitemap.xml">Plan du site</a>
+    </p>
+  </footer>
+
+  <!-- Modale de détail d'un caractère -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Détail du caractère">
+      <button class="modal-close" data-close aria-label="Fermer">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js" defer></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4d0800b3af31c45',t:'MTc5MjQyMDQzMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
