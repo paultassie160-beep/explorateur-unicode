@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://paultassie160-beep.github.io/explorateur-unicode/sitemap.xml

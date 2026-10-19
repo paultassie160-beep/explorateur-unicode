@@ -1,0 +1,4 @@
+# Fichier généré automatiquement par script.py.
+# Il sera rempli tout seul le jour où vous définirez la variable
+# ADSENSE_ID dans GitHub (Settings → Secrets and variables →
+# Actions → Variables). Rien d'autre à faire.
